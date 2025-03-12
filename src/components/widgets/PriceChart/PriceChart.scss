@@ -1,0 +1,128 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.price-chart-container {
+  width: 100%;
+  background-color: rgba($secondary-bg, 0.5);
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .pair-info {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+
+      .pair-name {
+        font-size: $font-size-lg;
+        margin: 0;
+      }
+
+      .price-change {
+        font-size: $font-size-sm;
+        font-weight: 600;
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-sm;
+
+        &.up {
+          background-color: rgba($neon-green, 0.1);
+          color: $neon-green;
+        }
+
+        &.down {
+          background-color: rgba($neon-pink, 0.1);
+          color: $neon-pink;
+        }
+
+        &.neutral {
+          background-color: rgba($text-secondary, 0.1);
+          color: $text-secondary;
+        }
+      }
+    }
+
+    .timeframe-selector {
+      display: flex;
+      gap: $spacing-xs;
+
+      .timeframe-button {
+        background: none;
+        border: none;
+        color: $text-secondary;
+        font-size: $font-size-xs;
+        padding: $spacing-xs $spacing-sm;
+        cursor: pointer;
+        border-radius: $border-radius-sm;
+        transition: all $transition-normal;
+
+        &:hover {
+          color: $text-primary;
+          background-color: rgba($tertiary-bg, 0.5);
+        }
+
+        &.active {
+          background-color: rgba($neon-blue, 0.2);
+          color: $neon-blue;
+        }
+      }
+    }
+  }
+
+  .chart-content {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      max-width: 100%;
+    }
+
+    .loading-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $spacing-md;
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 3px solid rgba($neon-blue, 0.1);
+        border-top-color: $neon-blue;
+        animation: spin 1s infinite linear;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      p {
+        color: $text-secondary;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+
+  .chart-footer {
+    display: flex;
+    justify-content: space-between;
+
+    .current-price {
+      font-size: $font-size-lg;
+      font-weight: 600;
+      color: $text-primary;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.input-amount {
+  position: relative;
+  width: 100%;
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: rgba($tertiary-bg, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $border-radius-sm;
+    padding: $spacing-xs $spacing-sm;
+    transition: all $transition-normal;
+
+    input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: $text-primary;
+      font-size: $font-size-lg;
+      padding: $spacing-xs;
+      outline: none;
+      min-width: 0;
+
+      &::placeholder {
+        color: rgba($text-secondary, 0.5);
+      }
+    }
+
+    .max-button {
+      margin-left: $spacing-xs;
+      background-color: rgba($neon-blue, 0.2);
+      color: $neon-blue;
+      border: none;
+      border-radius: $border-radius-xs;
+      padding: $spacing-xs $spacing-sm;
+      font-size: $font-size-xs;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all $transition-normal;
+
+      &:hover {
+        background-color: rgba($neon-blue, 0.3);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    .symbol {
+      margin-left: $spacing-xs;
+      color: $text-secondary;
+      font-size: $font-size-md;
+      font-weight: 600;
+    }
+  }
+
+  .balance {
+    display: flex;
+    justify-content: flex-end;
+    font-size: $font-size-xs;
+    color: $text-secondary;
+    margin-top: $spacing-xs;
+  }
+
+  .error-message {
+    color: $neon-pink;
+    font-size: $font-size-xs;
+    margin-top: $spacing-xs;
+  }
+
+  &.focused .input-wrapper {
+    border-color: rgba($neon-blue, 0.5);
+    box-shadow: 0 0 0 2px rgba($neon-blue, 0.2);
+  }
+
+  &.disabled {
+    opacity: 0.6;
+
+    .input-wrapper {
+      background-color: rgba($tertiary-bg, 0.2);
+      cursor: not-allowed;
+
+      input {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.has-error .input-wrapper {
+    border-color: rgba($neon-pink, 0.5);
+  }
+}

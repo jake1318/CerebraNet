@@ -1,0 +1,149 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.notification {
+  width: 350px;
+  background-color: $secondary-bg;
+  border-radius: $border-radius-md;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: $spacing-md;
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out forwards;
+  opacity: 1;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+
+  &.exiting {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  &.success {
+    border-left: 4px solid $neon-green;
+    .notification-icon {
+      color: $neon-green;
+    }
+    .progress-bar .progress {
+      background-color: $neon-green;
+    }
+  }
+
+  &.error {
+    border-left: 4px solid $neon-pink;
+    .notification-icon {
+      color: $neon-pink;
+    }
+    .progress-bar .progress {
+      background-color: $neon-pink;
+    }
+  }
+
+  &.warning {
+    border-left: 4px solid $neon-yellow;
+    .notification-icon {
+      color: $neon-yellow;
+    }
+    .progress-bar .progress {
+      background-color: $neon-yellow;
+    }
+  }
+
+  &.info {
+    border-left: 4px solid $neon-blue;
+    .notification-icon {
+      color: $neon-blue;
+    }
+    .progress-bar .progress {
+      background-color: $neon-blue;
+    }
+  }
+
+  .notification-content {
+    display: flex;
+    padding: $spacing-md;
+
+    .notification-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      margin-right: $spacing-md;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .notification-text {
+      flex-grow: 1;
+
+      .notification-title {
+        margin: 0 0 $spacing-xs 0;
+        font-size: $font-size-md;
+        font-weight: 600;
+      }
+
+      .notification-message {
+        margin: 0;
+        color: $text-secondary;
+        font-size: $font-size-sm;
+      }
+
+      .tx-link {
+        display: inline-block;
+        margin-top: $spacing-xs;
+        color: $neon-blue;
+        font-size: $font-size-xs;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .close-button {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      color: $text-secondary;
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      cursor: pointer;
+      margin-left: $spacing-sm;
+      opacity: 0.7;
+      transition: opacity $transition-normal;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .progress-bar {
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 100%;
+
+    .progress {
+      height: 100%;
+      transition: width 0.05s linear;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}

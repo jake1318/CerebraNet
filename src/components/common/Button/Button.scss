@@ -1,0 +1,237 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-md;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-normal;
+  border: none;
+  outline: none;
+  white-space: nowrap;
+  gap: $spacing-xs;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  // Size variations
+  &.button-sm {
+    font-size: $font-size-xs;
+    padding: $spacing-xs $spacing-sm;
+    height: 32px;
+
+    .button-icon {
+      font-size: 14px;
+    }
+  }
+
+  &.button-md {
+    font-size: $font-size-sm;
+    padding: $spacing-sm $spacing-md;
+    height: 40px;
+
+    .button-icon {
+      font-size: 16px;
+    }
+  }
+
+  &.button-lg {
+    font-size: $font-size-md;
+    padding: $spacing-md $spacing-lg;
+    height: 48px;
+
+    .button-icon {
+      font-size: 18px;
+    }
+  }
+
+  // Variant styles
+  &.button-primary {
+    background-color: $neon-blue;
+    color: $white;
+
+    &:hover:not(:disabled) {
+      background-color: lighten($neon-blue, 5%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba($neon-blue, 0.4);
+    }
+
+    &:active:not(:disabled) {
+      background-color: darken($neon-blue, 5%);
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba($neon-blue, 0.4);
+    }
+  }
+
+  &.button-secondary {
+    background-color: rgba($neon-blue, 0.2);
+    color: $neon-blue;
+
+    &:hover:not(:disabled) {
+      background-color: rgba($neon-blue, 0.3);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba($neon-blue, 0.4);
+      transform: translateY(0);
+    }
+  }
+
+  &.button-outline {
+    background-color: transparent;
+    color: $text-primary;
+    border: 1px solid rgba($text-primary, 0.3);
+
+    &:hover:not(:disabled) {
+      border-color: rgba($text-primary, 0.6);
+      background-color: rgba($white, 0.05);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+      border-color: rgba($text-primary, 0.8);
+      background-color: rgba($white, 0.1);
+      transform: translateY(0);
+    }
+  }
+
+  &.button-text {
+    background-color: transparent;
+    color: $text-primary;
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
+
+    &:hover:not(:disabled) {
+      background-color: rgba($white, 0.05);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba($white, 0.1);
+      transform: translateY(0);
+    }
+  }
+
+  &.button-gradient {
+    background: linear-gradient(45deg, $neon-blue, $neon-purple);
+    color: $white;
+
+    &:hover:not(:disabled) {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba($neon-blue, 0.4);
+    }
+
+    &:active:not(:disabled) {
+      filter: brightness(0.9);
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba($neon-blue, 0.4);
+    }
+  }
+
+  &.button-danger {
+    background-color: $neon-pink;
+    color: $white;
+
+    &:hover:not(:disabled) {
+      background-color: lighten($neon-pink, 5%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba($neon-pink, 0.4);
+    }
+
+    &:active:not(:disabled) {
+      background-color: darken($neon-pink, 5%);
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba($neon-pink, 0.4);
+    }
+  }
+
+  // Loading state
+  &.loading {
+    color: transparent !important;
+    pointer-events: none;
+
+    .button-icon,
+    .button-text {
+      opacity: 0;
+    }
+
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+
+      svg {
+        animation: spin 1s linear infinite;
+        width: 100%;
+        height: 100%;
+
+        circle {
+          stroke: currentColor;
+          stroke-linecap: round;
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: 0;
+          animation: dash 1.5s ease-in-out infinite;
+        }
+      }
+
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes dash {
+        0% {
+          stroke-dasharray: 1, 150;
+          stroke-dashoffset: 0;
+        }
+        50% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -35;
+        }
+        100% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -124;
+        }
+      }
+    }
+  }
+
+  // Full width
+  &.full-width {
+    width: 100%;
+  }
+
+  // Icon positioning
+  .button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.left-icon {
+      margin-right: 0;
+    }
+
+    &.right-icon {
+      margin-left: 0;
+    }
+  }
+
+  .button-text {
+    position: relative;
+    display: inline-block;
+  }
+}

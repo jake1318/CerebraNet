@@ -1,0 +1,148 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $spacing-sm;
+
+  &.input-full-width {
+    width: 100%;
+  }
+
+  .input-label {
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-xs;
+    color: $text-secondary;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-field {
+    flex: 1;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $border-radius-sm;
+    color: $text-primary;
+    transition: all $transition-normal;
+    padding: $spacing-sm;
+    outline: none;
+    width: 100%;
+    font-size: $font-size-sm;
+
+    &::placeholder {
+      color: rgba($text-secondary, 0.5);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  .input-element {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    pointer-events: none;
+
+    &.left-element {
+      left: $spacing-sm;
+      & + .input-field {
+        padding-left: 36px;
+      }
+    }
+
+    &.right-element {
+      right: $spacing-sm;
+      & ~ .input-field {
+        padding-right: 36px;
+      }
+    }
+  }
+
+  .input-message {
+    font-size: $font-size-xs;
+    margin-top: $spacing-xs;
+    color: $text-secondary;
+
+    &.error {
+      color: $neon-pink;
+    }
+  }
+
+  // Size variations
+  &.input-sm {
+    .input-field {
+      padding: $spacing-xs;
+      font-size: $font-size-xs;
+      height: 32px;
+    }
+  }
+
+  &.input-md {
+    .input-field {
+      padding: $spacing-sm;
+      font-size: $font-size-sm;
+      height: 40px;
+    }
+  }
+
+  &.input-lg {
+    .input-field {
+      padding: $spacing-md;
+      font-size: $font-size-md;
+      height: 48px;
+    }
+  }
+
+  // Variant styles
+  &.input-filled {
+    .input-field {
+      background-color: rgba($tertiary-bg, 0.3);
+    }
+  }
+
+  // State styles
+  &.input-focused {
+    .input-label {
+      color: $neon-blue;
+    }
+
+    .input-field {
+      border-color: rgba($neon-blue, 0.5);
+      box-shadow: 0 0 0 2px rgba($neon-blue, 0.2);
+    }
+  }
+
+  &.input-error {
+    .input-label {
+      color: $neon-pink;
+    }
+
+    .input-field {
+      border-color: rgba($neon-pink, 0.5);
+      box-shadow: 0 0 0 2px rgba($neon-pink, 0.1);
+    }
+  }
+
+  &.input-success {
+    .input-label {
+      color: $neon-green;
+    }
+
+    .input-field {
+      border-color: rgba($neon-green, 0.5);
+      box-shadow: 0 0 0 2px rgba($neon-green, 0.1);
+    }
+  }
+}

@@ -1,0 +1,182 @@
+@import "variables";
+@import "mixins";
+
+// Global Styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: $primary-bg;
+  color: $text-primary;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  background-image: radial-gradient(
+      circle at 50% 0%,
+      rgba($neon-purple, 0.15),
+      transparent 30%
+    ),
+    radial-gradient(circle at 85% 30%, rgba($neon-blue, 0.15), transparent 30%);
+  background-attachment: fixed;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  margin-bottom: $spacing-md;
+}
+
+h1 {
+  font-size: $font-size-xxl;
+  @include neon-text($neon-blue);
+}
+
+h2 {
+  font-size: $font-size-xl;
+}
+
+h3 {
+  font-size: $font-size-lg;
+}
+
+p {
+  margin-bottom: $spacing-md;
+}
+
+a {
+  color: $neon-blue;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: lighten($neon-blue, 10%);
+    text-shadow: 0 0 5px rgba($neon-blue, 0.7);
+  }
+}
+
+// Container
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+}
+
+// Button Styles
+.btn {
+  @include neon-button($neon-blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &--primary {
+    @include neon-button($neon-blue);
+  }
+
+  &--secondary {
+    @include neon-button($neon-purple);
+  }
+
+  &--success {
+    @include neon-button($neon-green);
+  }
+
+  &--danger {
+    @include neon-button($neon-pink);
+  }
+
+  &--lg {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-md;
+  }
+
+  &--sm {
+    padding: $spacing-xs $spacing-md;
+    font-size: $font-size-xs;
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      box-shadow: none;
+      text-shadow: none;
+
+      &::before {
+        opacity: 0;
+      }
+    }
+  }
+
+  & + .btn {
+    margin-left: $spacing-md;
+  }
+}
+
+// Card
+.card {
+  @include card;
+}
+
+// Input
+.input {
+  @include input-style;
+}
+
+// Layout
+.grid {
+  @include grid-layout;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+// Animation
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba($neon-blue, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba($neon-blue, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba($neon-blue, 0.3);
+  }
+}
+
+// Pages specific styles will be added in their own components

@@ -1,0 +1,135 @@
+// Text styling
+@mixin neon-text($color) {
+  color: $color;
+  font-weight: 700;
+  text-shadow: 0 0 5px rgba($color, 0.3), 0 0 10px rgba($color, 0.2),
+    0 0 15px rgba($color, 0.1);
+}
+
+// Card styling
+@mixin card {
+  background-color: $secondary-bg;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+// Input styling
+@mixin input-style {
+  background-color: rgba($tertiary-bg, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $border-radius-sm;
+  color: $text-primary;
+  padding: $spacing-sm;
+  font-size: $font-size-sm;
+  width: 100%;
+  transition: all $transition-normal;
+
+  &:focus {
+    outline: none;
+    border-color: rgba($neon-blue, 0.5);
+    box-shadow: 0 0 0 2px rgba($neon-blue, 0.2);
+  }
+
+  &::placeholder {
+    color: $text-secondary;
+    opacity: 0.7;
+  }
+}
+
+// Button styling
+@mixin button($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: $border-radius-sm;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-normal;
+
+  &:hover:not(:disabled) {
+    filter: brightness(1.2);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    filter: brightness(0.9);
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Neon button styling
+@mixin neon-button($color) {
+  background-color: rgba($color, 0.2);
+  color: $color;
+  border: 1px solid rgba($color, 0.4);
+  border-radius: $border-radius-sm;
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-normal;
+
+  &:hover:not(:disabled) {
+    background-color: rgba($color, 0.3);
+    box-shadow: 0 0 10px rgba($color, 0.4);
+  }
+
+  &:active:not(:disabled) {
+    background-color: rgba($color, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+// Gradient border
+@mixin gradient-border($gradient) {
+  background-color: $secondary-bg;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  position: relative;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    padding: 1px;
+    border-radius: $border-radius-md;
+    background: $gradient;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+}
+
+// Flex center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Media queries
+@mixin for-tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin for-mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}

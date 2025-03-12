@@ -1,0 +1,160 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background-color: rgba($primary-bg, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-xl;
+    font-weight: 800;
+    text-decoration: none;
+
+    .logo-text {
+      @include neon-text($neon-blue);
+    }
+
+    .logo-accent {
+      @include neon-text($neon-purple);
+      margin-left: 4px;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+  }
+
+  &__nav-item {
+    font-size: $font-size-md;
+    font-weight: 500;
+    color: $text-secondary;
+    text-decoration: none;
+    padding: $spacing-sm;
+    position: relative;
+    transition: color $transition-normal;
+
+    &:hover {
+      color: $text-primary;
+
+      &::after {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: $neon-blue;
+      transform: scaleX(0);
+      opacity: 0;
+      transition: transform $transition-normal, opacity $transition-normal;
+    }
+
+    &.active {
+      color: $neon-blue;
+
+      &::after {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__connect-btn {
+    // Custom styles for wallet connect button
+  }
+
+  &__mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: $text-primary;
+      transition: all $transition-normal;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__menu {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background-color: rgba($secondary-bg, 0.95);
+      backdrop-filter: blur(10px);
+      padding: $spacing-lg;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform $transition-normal, opacity $transition-normal;
+      pointer-events: none;
+
+      &.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    &__nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__mobile-toggle {
+      display: flex;
+    }
+
+    &.open &__mobile-toggle {
+      span {
+        &:first-child {
+          transform: translateY(8px) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:last-child {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+      }
+    }
+  }
+}

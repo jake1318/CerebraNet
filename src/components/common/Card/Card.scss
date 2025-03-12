@@ -1,0 +1,67 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.card {
+  background-color: $secondary-bg;
+  border-radius: $border-radius-md;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all $transition-normal;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  &.card-gradient {
+    @include gradient-border(linear-gradient(45deg, $neon-blue, $neon-purple));
+    padding: 1px;
+    background-clip: padding-box;
+  }
+
+  &.card-stretched {
+    height: 100%;
+  }
+
+  &.card-hoverable {
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      border-color: rgba($neon-blue, 0.3);
+    }
+  }
+
+  &.card-clickable {
+    cursor: pointer;
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .card-header {
+    padding: $spacing-md;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    .card-title {
+      font-size: $font-size-lg;
+      font-weight: 600;
+      margin: 0;
+      color: $text-primary;
+    }
+
+    .card-subtitle {
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      margin-top: $spacing-xs;
+    }
+  }
+
+  .card-body {
+    padding: $spacing-md;
+    flex: 1;
+  }
+
+  .card-footer {
+    padding: $spacing-md;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}

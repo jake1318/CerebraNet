@@ -1,0 +1,130 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.token-selector {
+  position: relative;
+  width: 100%;
+
+  .token-selector-button {
+    @include input-style;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-sm $spacing-md;
+    cursor: pointer;
+    background: rgba($tertiary-bg, 0.5);
+
+    .token-logo {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin-right: $spacing-sm;
+    }
+
+    .token-symbol {
+      font-weight: 600;
+      flex-grow: 1;
+      text-align: left;
+    }
+
+    .arrow-down {
+      border: solid $text-secondary;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(45deg);
+      margin-left: $spacing-sm;
+    }
+  }
+
+  .token-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background-color: $secondary-bg;
+    border-radius: $border-radius-md;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    max-height: 300px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .search-container {
+      padding: $spacing-sm;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      .search-input {
+        @include input-style;
+        background-color: rgba($tertiary-bg, 0.3);
+      }
+    }
+
+    .token-list {
+      overflow-y: auto;
+      max-height: 250px;
+      padding: $spacing-xs;
+
+      .token-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $spacing-sm;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        transition: all $transition-normal;
+
+        &:hover {
+          background-color: rgba($tertiary-bg, 0.5);
+        }
+
+        &.selected {
+          background-color: rgba($neon-blue, 0.1);
+        }
+
+        .token-info {
+          display: flex;
+          align-items: center;
+
+          .token-logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            margin-right: $spacing-sm;
+          }
+
+          .token-details {
+            display: flex;
+            flex-direction: column;
+
+            .token-symbol {
+              font-weight: 600;
+              font-size: $font-size-sm;
+            }
+
+            .token-name {
+              font-size: $font-size-xs;
+              color: $text-secondary;
+            }
+          }
+        }
+
+        .token-balance {
+          font-size: $font-size-sm;
+
+          .balance-amount {
+            color: $text-secondary;
+          }
+        }
+      }
+
+      .no-tokens {
+        padding: $spacing-md;
+        text-align: center;
+        color: $text-secondary;
+      }
+    }
+  }
+}

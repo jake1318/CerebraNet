@@ -1,0 +1,75 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.stats-card {
+  background-color: rgba($secondary-bg, 0.5);
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  transition: all $transition-normal;
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($tertiary-bg, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-sm;
+
+    .stats-title {
+      color: $text-secondary;
+      font-size: $font-size-sm;
+    }
+
+    .stats-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: rgba($tertiary-bg, 0.5);
+
+      i {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .stats-value {
+    font-size: $font-size-xl;
+    font-weight: 700;
+    margin-bottom: $spacing-xs;
+  }
+
+  .stats-change {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-xs;
+    font-weight: 600;
+
+    i {
+      margin-right: 4px;
+      font-size: 12px;
+    }
+
+    &.up {
+      color: $neon-green;
+    }
+
+    &.down {
+      color: $neon-pink;
+    }
+
+    &.neutral {
+      color: $text-secondary;
+    }
+  }
+}
