@@ -133,3 +133,18 @@
     @content;
   }
 }
+
+// Grid layout - Adding the missing mixin
+@mixin grid-layout($columns: 3, $gap: $spacing-md) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+
+  @include for-tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include for-mobile {
+    grid-template-columns: 1fr;
+  }
+}
