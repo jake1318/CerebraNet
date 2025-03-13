@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { TokenBalance } from "../../types";
+import {
+  useTokenBalances,
+  formatTokenBalance,
+} from "../../../services/TokenService";
 import "./TokenSelector.scss";
 
 interface TokenSelectorProps {
@@ -16,70 +19,22 @@ const TokenSelector: React.FC<TokenSelectorProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Mock token list - in a real app, this would come from a context or API
-  const tokenList: TokenBalance[] = [
-    {
-      symbol: "SUI",
-      name: "Sui",
-      balance: "10000000000",
-      decimals: 9,
-      logo: "/assets/tokens/sui.png",
-      usdValue: 12.35,
-    },
-    {
-      symbol: "USDC",
-      name: "USD Coin",
-      balance: "50000000",
-      decimals: 6,
-      logo: "/assets/tokens/usdc.png",
-      usdValue: 1.0,
-    },
-    {
-      symbol: "USDT",
-      name: "Tether",
-      balance: "40000000",
-      decimals: 6,
-      logo: "/assets/tokens/usdt.png",
-      usdValue: 1.0,
-    },
-    {
-      symbol: "ETH",
-      name: "Ethereum",
-      balance: "500000000000000000",
-      decimals: 18,
-      logo: "/assets/tokens/eth.png",
-      usdValue: 3120.75,
-    },
-    {
-      symbol: "BTC",
-      name: "Bitcoin",
-      balance: "10000000",
-      decimals: 8,
-      logo: "/assets/tokens/btc.png",
-      usdValue: 61452.12,
-    },
-    {
-      symbol: "TURBO",
-      name: "TurboSwap",
-      balance: "5000000000",
-      decimals: 6,
-      logo: "/assets/tokens/turbo.png",
-      usdValue: 0.85,
-    },
-  ];
+  const { tokenBalances, isLoading } = useTokenBalances();
 
   // Filter tokens based on search and excluded token
-  const filteredTokens = tokenList
+  const filteredTokens = tokenBalances
     .filter((token) => token.symbol !== excludedToken)
     .filter(
       (token) =>
         token.symbol.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        token.name.toLowerCase().includes(searchQuery.toLowerCase())
+        token.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        token.address.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
   // Find the currently selected token
-  const selectedTokenData = tokenList.find((t) => t.symbol === selectedToken);
+  const selectedTokenData = tokenBalances.find(
+    (t) => t.symbol === selectedToken
+  );
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -98,12 +53,6 @@ const TokenSelector: React.FC<TokenSelectorProps> = ({
     };
   }, []);
 
-  // Format balance based on decimals
-  const formatTokenBalance = (balance: string, decimals: number) => {
-    const value = parseFloat(balance) / Math.pow(10, decimals);
-    return value.toFixed(value < 0.01 ? 4 : 2);
-  };
-
   return (
     <div className="token-selector" ref={dropdownRef}>
       <button
@@ -117,6 +66,11 @@ const TokenSelector: React.FC<TokenSelectorProps> = ({
               src={selectedTokenData.logo}
               alt={selectedTokenData.symbol}
               className="token-logo"
+              onError={(e) => {
+                // If image fails to load, replace with default
+                (e.target as HTMLImageElement).src =
+                  "/assets/tokens/default-token.png";
+              }}
             />
             <span className="token-symbol">{selectedTokenData.symbol}</span>
           </>
@@ -139,7 +93,9 @@ const TokenSelector: React.FC<TokenSelectorProps> = ({
           </div>
 
           <div className="token-list">
-            {filteredTokens.length > 0 ? (
+            {isLoading ? (
+              <div className="loading-tokens">Loading tokens...</div>
+            ) : filteredTokens.length > 0 ? (
               filteredTokens.map((token) => (
                 <div
                   key={token.symbol}
@@ -157,6 +113,11 @@ const TokenSelector: React.FC<TokenSelectorProps> = ({
                       src={token.logo}
                       alt={token.symbol}
                       className="token-logo"
+                      onError={(e) => {
+                        // If image fails to load, replace with default
+                        (e.target as HTMLImageElement).src =
+                          "/assets/tokens/default-token.png";
+                      }}
                     />
                     <div className="token-details">
                       <span className="token-symbol">{token.symbol}</span>

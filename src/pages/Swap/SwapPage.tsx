@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import { useWallet } from "@suiet/wallet-kit";
 import { useSwap } from "../../hooks/useSwap";
 import TokenSelector from "../../components/widgets/TokenSelector/TokenSelector";
+import {
+  useTokenBalances,
+  formatTokenBalance,
+} from "../../services/TokenService";
 import "./SwapPage.scss";
 
 const SwapPage = () => {
   const wallet = useWallet();
+  const { tokenBalances } = useTokenBalances();
   const {
     state,
     updateState,
@@ -69,6 +74,16 @@ const SwapPage = () => {
     await executeSwapTransaction();
   };
 
+  // Helper function to get token balance
+  const getTokenBalance = (symbol: string) => {
+    if (!wallet.connected || !symbol) return "0";
+
+    const token = tokenBalances.find((token) => token.symbol === symbol);
+    if (!token) return "0";
+
+    return formatTokenBalance(token.balance, token.decimals);
+  };
+
   return (
     <div className="swap-page">
       <div className="card swap-container">
@@ -82,7 +97,7 @@ const SwapPage = () => {
               <span>From</span>
               {wallet.connected && (
                 <span className="token-balance">
-                  Balance: {/* Display token balance here */}
+                  Balance: {getTokenBalance(state.tokenA)}
                 </span>
               )}
             </div>
@@ -130,7 +145,7 @@ const SwapPage = () => {
               <span>To</span>
               {wallet.connected && (
                 <span className="token-balance">
-                  Balance: {/* Display token balance here */}
+                  Balance: {getTokenBalance(state.tokenB)}
                 </span>
               )}
             </div>

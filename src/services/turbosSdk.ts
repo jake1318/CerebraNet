@@ -1,12 +1,17 @@
-import { JsonRpcProvider, testnetConnection, mainnetConnection, devnetConnection } from '@mysten/sui/client';
-import { Transaction } from '@mysten/sui/transactions';
-import { Network, TurbosSdk, Contract, Trade, Pool } from 'turbos-clmm-sdk';
+import {
+  JsonRpcProvider,
+  testnetConnection,
+  mainnetConnection,
+  devnetConnection,
+} from "@mysten/sui/client";
+import { Transaction } from "@mysten/sui/transactions";
+import { Network, TurbosSdk, Contract, Trade, Pool } from "turbos-clmm-sdk";
 
 export enum NetworkType {
-  MAINNET = 'mainnet',
-  TESTNET = 'testnet',
-  DEVNET = 'devnet',
-  LOCAL = 'local'
+  MAINNET = "mainnet",
+  TESTNET = "testnet",
+  DEVNET = "devnet",
+  LOCAL = "local",
 }
 
 /**
@@ -20,7 +25,7 @@ class TurbosSdkService {
 
   /**
    * Initialize the SDK with the specified network
-   * 
+   *
    * @param networkType - The network to connect to (mainnet, testnet, devnet, local)
    */
   constructor(networkType: NetworkType = NetworkType.MAINNET) {
@@ -40,7 +45,9 @@ class TurbosSdkService {
         break;
       case NetworkType.LOCAL:
         this._network = Network.local;
-        this._provider = new JsonRpcProvider({ fullnode: 'http://localhost:9000' });
+        this._provider = new JsonRpcProvider({
+          fullnode: "http://localhost:9000",
+        });
         break;
       default:
         this._network = Network.mainnet;
@@ -74,7 +81,7 @@ class TurbosSdkService {
 
   /**
    * Get the contract configuration
-   * 
+   *
    * @returns Contract configuration details
    */
   async getContractConfig(): Promise<Contract.Config> {
@@ -83,7 +90,7 @@ class TurbosSdkService {
 
   /**
    * Get the contract fees
-   * 
+   *
    * @returns Array of fee configurations
    */
   async getContractFees(): Promise<Contract.Fee[]> {
@@ -92,7 +99,7 @@ class TurbosSdkService {
 
   /**
    * Compute the result of a swap operation before execution
-   * 
+   *
    * @param params - Swap parameters
    * @returns Computed swap results
    */
@@ -100,7 +107,7 @@ class TurbosSdkService {
     pools: Array<{
       pool: string;
       a2b: boolean;
-    }>,
+    }>;
     address: string;
     amountSpecified: number | string;
     amountSpecifiedIsInput: boolean;
@@ -110,7 +117,7 @@ class TurbosSdkService {
 
   /**
    * Execute a swap operation
-   * 
+   *
    * @param params - Swap parameters
    * @returns Transaction builder with the swap transaction
    */
@@ -130,12 +137,15 @@ class TurbosSdkService {
 
   /**
    * Get pools by coin types
-   * 
+   *
    * @param coinTypeA - First coin type
    * @param coinTypeB - Second coin type
    * @returns Array of pools for the specified coins
    */
-  async getPoolsByCoinTypes(coinTypeA: string, coinTypeB: string): Promise<Pool.PoolData[]> {
+  async getPoolsByCoinTypes(
+    coinTypeA: string,
+    coinTypeB: string
+  ): Promise<Pool.PoolData[]> {
     return await this._sdk.pool.getPoolsByCoinTypes(coinTypeA, coinTypeB);
   }
 }

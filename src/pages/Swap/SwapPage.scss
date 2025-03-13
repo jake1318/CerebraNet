@@ -112,7 +112,7 @@
   align-items: center;
   justify-content: center;
   transition: all vars.$transition-normal;
-  margin: -vars.$spacing-sm 0;
+  margin: calc(vars.$spacing-sm * -1) 0; /* Fixed this line */
   position: relative;
   z-index: 10;
 
