@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useWallet } from "@suiet/wallet-kit";
 import { useSwap } from "../../hooks/useSwap";
+import TokenSelector from "../../components/widgets/TokenSelector/TokenSelector";
 import "./SwapPage.scss";
 
 const SwapPage = () => {
@@ -12,6 +13,11 @@ const SwapPage = () => {
     executeSwapTransaction,
     switchTokens,
   } = useSwap();
+
+  // Add state to track which token selector is being shown
+  const [showTokenSelector, setShowTokenSelector] = useState<
+    "tokenA" | "tokenB" | null
+  >(null);
 
   useEffect(() => {
     // Calculate swap result when input values change
@@ -42,6 +48,16 @@ const SwapPage = () => {
     } else {
       updateState({ amountB: amount, isExactIn: false });
     }
+  };
+
+  const handleTokenSelect = (token: string) => {
+    if (showTokenSelector === "tokenA") {
+      updateState({ tokenA: token });
+    } else if (showTokenSelector === "tokenB") {
+      updateState({ tokenB: token });
+    }
+
+    setShowTokenSelector(null); // Hide the token selector after selection
   };
 
   const handleSwap = async () => {
@@ -78,10 +94,23 @@ const SwapPage = () => {
                 onChange={(e) => handleAmountChange(e.target.value, true)}
                 className="token-amount-input"
               />
-              <button className="token-select-btn">
-                {state.tokenA || "Select Token"}
-                <span className="dropdown-icon">▼</span>
-              </button>
+              {showTokenSelector === "tokenA" ? (
+                <div className="token-selector-wrapper">
+                  <TokenSelector
+                    selectedToken={state.tokenA}
+                    excludedToken={state.tokenB}
+                    onSelectToken={handleTokenSelect}
+                  />
+                </div>
+              ) : (
+                <button
+                  className="token-select-btn"
+                  onClick={() => setShowTokenSelector("tokenA")}
+                >
+                  {state.tokenA || "Select Token"}
+                  <span className="dropdown-icon">▼</span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -113,20 +142,36 @@ const SwapPage = () => {
                 onChange={(e) => handleAmountChange(e.target.value, false)}
                 className="token-amount-input"
               />
-              <button className="token-select-btn">
-                {state.tokenB || "Select Token"}
-                <span className="dropdown-icon">▼</span>
-              </button>
+              {showTokenSelector === "tokenB" ? (
+                <div className="token-selector-wrapper">
+                  <TokenSelector
+                    selectedToken={state.tokenB}
+                    excludedToken={state.tokenA}
+                    onSelectToken={handleTokenSelect}
+                  />
+                </div>
+              ) : (
+                <button
+                  className="token-select-btn"
+                  onClick={() => setShowTokenSelector("tokenB")}
+                >
+                  {state.tokenB || "Select Token"}
+                  <span className="dropdown-icon">▼</span>
+                </button>
+              )}
             </div>
           </div>
 
           {/* Swap details */}
-          {state.amountA && state.amountB && (
+          {state.amountA && state.amountB && state.tokenA && state.tokenB && (
             <div className="swap-details">
               <div className="swap-rate">
                 <span>Rate</span>
                 <span>
-                  1 {state.tokenA} = {/* Calculate and display rate */}{" "}
+                  1 {state.tokenA} ≈{" "}
+                  {(
+                    parseFloat(state.amountB) / parseFloat(state.amountA)
+                  ).toFixed(6)}{" "}
                   {state.tokenB}
                 </span>
               </div>

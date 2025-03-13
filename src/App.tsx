@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Header from "./components/layout/Header/Header";
 import AppRoutes from "./routes";
 import { useWallet } from "@suiet/wallet-kit";
+import Footer from "./components/layout/Footer/Footer";
 
 const App = () => {
   const wallet = useWallet();
@@ -21,6 +22,7 @@ const App = () => {
           <AppRoutes />
         </div>
       </main>
+      <Footer />
       <div className="background-overlay"></div>
     </div>
   );

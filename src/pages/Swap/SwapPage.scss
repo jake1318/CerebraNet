@@ -61,6 +61,7 @@
   display: flex;
   align-items: center;
   gap: $spacing-md;
+  position: relative;
 }
 
 .token-amount-input {
@@ -87,6 +88,11 @@
     font-size: 10px;
     margin-left: $spacing-xs;
   }
+}
+
+.token-selector-wrapper {
+  position: relative;
+  z-index: 100;
 }
 
 .switch-tokens-btn {

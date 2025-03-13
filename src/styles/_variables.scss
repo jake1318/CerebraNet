@@ -1,53 +1,40 @@
-// Cypherpunk Neon Theme Colors
-$primary-bg: #0c0c14;
-$secondary-bg: #16161f;
-$tertiary-bg: #1f1f2e;
-$card-bg: rgba(16, 16, 25, 0.7);
-
-// Neon Colors
-$neon-blue: #00ffff;
-$neon-purple: #bc13fe;
-$neon-pink: #ff2079;
-$neon-green: #00ff9f;
-$neon-yellow: #fffa65;
-
-// Text Colors
+// Define color palette
+$background-color: #070d19;
 $text-primary: #ffffff;
 $text-secondary: rgba(255, 255, 255, 0.7);
 $text-disabled: rgba(255, 255, 255, 0.4);
 
+$neon-blue: #00c2ff;
+$neon-purple: #8a2be2;
+$neon-pink: #ff1493;
+$neon-green: #00ff9f;
+
 // Gradients
-$gradient-blue: linear-gradient(90deg, $neon-blue 0%, #0061ff 100%);
-$gradient-purple: linear-gradient(90deg, $neon-purple 0%, #ff71f6 100%);
-$gradient-green: linear-gradient(90deg, $neon-green 0%, #00c975 100%);
-
-// Shadows
-$neon-blue-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-$neon-purple-shadow: 0 0 10px rgba(188, 19, 254, 0.7);
-$neon-pink-shadow: 0 0 10px rgba(255, 32, 121, 0.7);
-$neon-green-shadow: 0 0 10px rgba(0, 255, 159, 0.7);
-
-// Border Radius
-$border-radius-sm: 4px;
-$border-radius-md: 8px;
-$border-radius-lg: 16px;
+$gradient-blue: linear-gradient(90deg, $neon-blue, $neon-purple);
+$gradient-purple: linear-gradient(90deg, $neon-purple, $neon-pink);
 
 // Spacing
-$spacing-xs: 4px;
-$spacing-sm: 8px;
-$spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 32px;
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
 
-// Font Sizes
-$font-size-xs: 0.75rem; // 12px
-$font-size-sm: 0.875rem; // 14px
-$font-size-md: 1rem; // 16px
-$font-size-lg: 1.25rem; // 20px
-$font-size-xl: 1.5rem; // 24px
-$font-size-xxl: 2rem; // 32px
+// Typography
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-xxl: 2rem;
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
 
 // Transitions
-$transition-fast: 0.2s ease;
+$transition-fast: 0.15s ease;
 $transition-normal: 0.3s ease;
 $transition-slow: 0.5s ease;
