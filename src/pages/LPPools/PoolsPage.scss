@@ -1,5 +1,5 @@
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mix;
 
 .pools-page {
   padding-top: 100px;
@@ -10,42 +10,42 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: $spacing-lg;
+  padding: vars.$spacing-lg;
   display: flex;
   flex-direction: column;
-  gap: $spacing-lg;
+  gap: vars.$spacing-lg;
 }
 
 .pools-header {
   text-align: center;
-  margin-bottom: $spacing-xl;
+  margin-bottom: vars.$spacing-xl;
 
   .page-title {
-    @include neon-text($neon-blue);
-    margin-bottom: $spacing-sm;
+    @include mix.neon-text(vars.$neon-blue);
+    margin-bottom: vars.$spacing-sm;
   }
 
   .page-description {
-    color: $text-secondary;
-    font-size: $font-size-lg;
+    color: vars.$text-secondary;
+    font-size: vars.$font-size-lg;
   }
 }
 
 .pools-tabs {
   display: flex;
   justify-content: center;
-  gap: $spacing-md;
-  margin-bottom: $spacing-xl;
+  gap: vars.$spacing-md;
+  margin-bottom: vars.$spacing-xl;
 
   .tab-btn {
     background: none;
     border: none;
-    color: $text-secondary;
-    font-size: $font-size-md;
-    padding: $spacing-sm $spacing-lg;
+    color: vars.$text-secondary;
+    font-size: vars.$font-size-md;
+    padding: vars.$spacing-sm vars.$spacing-lg;
     cursor: pointer;
     position: relative;
-    transition: all $transition-normal;
+    transition: all vars.$transition-normal;
 
     &::after {
       content: "";
@@ -54,17 +54,17 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background: $gradient-blue;
+      background: vars.$gradient-blue;
       transform: scaleX(0);
-      transition: transform $transition-normal;
+      transition: transform vars.$transition-normal;
     }
 
     &:hover {
-      color: $text-primary;
+      color: vars.$text-primary;
     }
 
     &.active {
-      color: $neon-blue;
+      color: vars.$neon-blue;
       font-weight: 600;
 
       &::after {
@@ -84,16 +84,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: $spacing-xl 0;
+  padding: vars.$spacing-xl 0;
 
   .loading-spinner {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 3px solid rgba($neon-blue, 0.3);
-    border-top-color: $neon-blue;
+    border: 3px solid rgba(vars.$neon-blue, 0.3);
+    border-top-color: vars.$neon-blue;
     animation: spin 1s infinite linear;
-    margin-bottom: $spacing-md;
+    margin-bottom: vars.$spacing-md;
   }
 
   @keyframes spin {
@@ -102,13 +102,12 @@
     }
   }
 }
-
 .error-container {
   text-align: center;
-  padding: $spacing-xl 0;
+  padding: vars.$spacing-xl 0;
 
   .error-message {
-    color: $neon-pink;
+    color: vars.$neon-pink;
   }
 }
 
@@ -118,30 +117,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: $spacing-lg;
+    margin-bottom: vars.$spacing-lg;
 
     .search-container {
       flex: 1;
       max-width: 300px;
 
       .search-input {
-        @include input-style;
+        @include mix.input-style;
       }
     }
 
     .sort-container {
       display: flex;
       align-items: center;
-      gap: $spacing-sm;
+      gap: vars.$spacing-sm;
 
       label {
-        color: $text-secondary;
-        font-size: $font-size-sm;
+        color: vars.$text-secondary;
+        font-size: vars.$font-size-sm;
       }
 
       .sort-select {
-        @include input-style;
-        padding: $spacing-xs $spacing-sm;
+        @include mix.input-style;
+        padding: vars.$spacing-xs vars.$spacing-sm;
         background-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -150,8 +149,8 @@
         cursor: pointer;
 
         option {
-          background-color: $tertiary-bg;
-          color: $text-primary;
+          background-color: vars.$tertiary-bg;
+          color: vars.$text-primary;
         }
       }
     }
@@ -160,12 +159,12 @@
   .pools-list-header {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
-    padding: $spacing-sm $spacing-md;
-    background-color: rgba($tertiary-bg, 0.5);
-    border-radius: $border-radius-md;
-    font-size: $font-size-sm;
-    color: $text-secondary;
-    margin-bottom: $spacing-md;
+    padding: vars.$spacing-sm vars.$spacing-md;
+    background-color: rgba(vars.$tertiary-bg, 0.5);
+    border-radius: vars.$border-radius-md;
+    font-size: vars.$font-size-sm;
+    color: vars.$text-secondary;
+    margin-bottom: vars.$spacing-md;
 
     @media (max-width: 768px) {
       display: none;
@@ -175,27 +174,27 @@
   .pools-list-content {
     display: flex;
     flex-direction: column;
-    gap: $spacing-md;
+    gap: vars.$spacing-md;
   }
 
   .pool-card {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
-    padding: $spacing-md;
-    background-color: rgba($secondary-bg, 0.5);
-    border-radius: $border-radius-md;
-    transition: all $transition-normal;
+    padding: vars.$spacing-md;
+    background-color: rgba(vars.$secondary-bg, 0.5);
+    border-radius: vars.$border-radius-md;
+    transition: all vars.$transition-normal;
 
     &:hover {
-      background-color: rgba($tertiary-bg, 0.5);
-      box-shadow: 0 0 15px rgba($neon-blue, 0.2);
+      background-color: rgba(vars.$tertiary-bg, 0.5);
+      box-shadow: 0 0 15px rgba(vars.$neon-blue, 0.2);
     }
 
     .pool-pair {
       display: flex;
       align-items: center;
-      gap: $spacing-sm;
+      gap: vars.$spacing-sm;
 
       .token-icons {
         position: relative;
@@ -230,21 +229,21 @@
     .pool-tvl,
     .pool-volume,
     .pool-fee {
-      font-size: $font-size-sm;
+      font-size: vars.$font-size-sm;
     }
 
     .pool-apr {
-      font-size: $font-size-sm;
-      color: $neon-green;
+      font-size: vars.$font-size-sm;
+      color: vars.$neon-green;
       font-weight: 600;
     }
 
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
-      gap: $spacing-sm;
+      gap: vars.$spacing-sm;
 
       .pool-pair {
-        margin-bottom: $spacing-sm;
+        margin-bottom: vars.$spacing-sm;
       }
 
       .pool-fee,
@@ -257,13 +256,13 @@
         &::before {
           content: attr(class);
           text-transform: uppercase;
-          color: $text-secondary;
-          font-size: $font-size-xs;
+          color: vars.$text-secondary;
+          font-size: vars.$font-size-xs;
         }
       }
 
       .pool-action {
-        margin-top: $spacing-sm;
+        margin-top: vars.$spacing-sm;
 
         button {
           width: 100%;
@@ -272,36 +271,37 @@
     }
   }
 }
+
 // Vaults list styles
 .vaults-list {
   .vaults-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: $spacing-lg;
+    margin-bottom: vars.$spacing-lg;
 
     .search-container {
       flex: 1;
       max-width: 300px;
 
       .search-input {
-        @include input-style;
+        @include mix.input-style;
       }
     }
 
     .sort-container {
       display: flex;
       align-items: center;
-      gap: $spacing-sm;
+      gap: vars.$spacing-sm;
 
       label {
-        color: $text-secondary;
-        font-size: $font-size-sm;
+        color: vars.$text-secondary;
+        font-size: vars.$font-size-sm;
       }
 
       .sort-select {
-        @include input-style;
-        padding: $spacing-xs $spacing-sm;
+        @include mix.input-style;
+        padding: vars.$spacing-xs vars.$spacing-sm;
         background-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -310,35 +310,34 @@
         cursor: pointer;
 
         option {
-          background-color: $tertiary-bg;
-          color: $text-primary;
+          background-color: vars.$tertiary-bg;
+          color: vars.$text-primary;
         }
       }
     }
   }
-
   .vaults-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: $spacing-lg;
+    gap: vars.$spacing-lg;
   }
 
   .vault-card {
-    @include gradient-border($gradient-purple);
-    transition: all $transition-normal;
+    @include mix.gradient-border(vars.$gradient-purple);
+    transition: all vars.$transition-normal;
 
     &:hover {
-      box-shadow: 0 0 20px rgba($neon-purple, 0.3);
+      box-shadow: 0 0 20px rgba(vars.$neon-purple, 0.3);
     }
 
     .vault-header {
-      margin-bottom: $spacing-md;
+      margin-bottom: vars.$spacing-md;
 
       .vault-name-container {
         display: flex;
         align-items: center;
-        gap: $spacing-sm;
-        margin-bottom: $spacing-sm;
+        gap: vars.$spacing-sm;
+        margin-bottom: vars.$spacing-sm;
 
         .token-icons {
           position: relative;
@@ -366,18 +365,18 @@
         }
 
         .vault-name {
-          font-size: $font-size-md;
+          font-size: vars.$font-size-md;
           font-weight: 600;
         }
       }
 
       .vault-strategy {
-        font-size: $font-size-sm;
-        color: $text-secondary;
+        font-size: vars.$font-size-sm;
+        color: vars.$text-secondary;
 
         .strategy-value {
-          color: $neon-purple;
-          margin-left: $spacing-xs;
+          color: vars.$neon-purple;
+          margin-left: vars.$spacing-xs;
         }
       }
     }
@@ -385,23 +384,23 @@
     .vault-stats {
       display: flex;
       justify-content: space-between;
-      margin-bottom: $spacing-md;
+      margin-bottom: vars.$spacing-md;
 
       .vault-stat {
         display: flex;
         flex-direction: column;
 
         .stat-label {
-          font-size: $font-size-xs;
-          color: $text-secondary;
+          font-size: vars.$font-size-xs;
+          color: vars.$text-secondary;
         }
 
         .stat-value {
-          font-size: $font-size-md;
+          font-size: vars.$font-size-md;
           font-weight: 600;
 
           &.highlight {
-            color: $neon-green;
+            color: vars.$neon-green;
           }
         }
       }
@@ -410,24 +409,24 @@
     .vault-rewards {
       display: flex;
       flex-direction: column;
-      margin-bottom: $spacing-md;
+      margin-bottom: vars.$spacing-md;
 
       .rewards-label {
-        font-size: $font-size-xs;
-        color: $text-secondary;
-        margin-bottom: $spacing-xs;
+        font-size: vars.$font-size-xs;
+        color: vars.$text-secondary;
+        margin-bottom: vars.$spacing-xs;
       }
 
       .rewards-list {
         display: flex;
-        gap: $spacing-sm;
+        gap: vars.$spacing-sm;
 
         .reward-token {
-          background-color: rgba($neon-purple, 0.2);
-          border-radius: $border-radius-sm;
-          padding: $spacing-xs $spacing-sm;
-          font-size: $font-size-xs;
-          color: $neon-purple;
+          background-color: rgba(vars.$neon-purple, 0.2);
+          border-radius: vars.$border-radius-sm;
+          padding: vars.$spacing-xs vars.$spacing-sm;
+          font-size: vars.$font-size-xs;
+          color: vars.$neon-purple;
           font-weight: 600;
         }
       }
@@ -438,40 +437,41 @@
     }
   }
 }
+
 // User positions styles
 .user-positions {
   .positions-header {
-    margin-bottom: $spacing-lg;
+    margin-bottom: vars.$spacing-lg;
 
     h2 {
-      @include neon-text($neon-green);
+      @include mix.neon-text(vars.$neon-green);
     }
   }
 
   .positions-list {
     display: flex;
     flex-direction: column;
-    gap: $spacing-lg;
+    gap: vars.$spacing-lg;
   }
 
   .position-card {
-    @include gradient-border($gradient-green);
-    transition: all $transition-normal;
+    @include mix.gradient-border(vars.$gradient-green);
+    transition: all vars.$transition-normal;
 
     &:hover {
-      box-shadow: 0 0 20px rgba($neon-green, 0.3);
+      box-shadow: 0 0 20px rgba(vars.$neon-green, 0.3);
     }
 
     .position-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: $spacing-md;
+      margin-bottom: vars.$spacing-md;
 
       .position-pair {
         display: flex;
         align-items: center;
-        gap: $spacing-sm;
+        gap: vars.$spacing-sm;
 
         .token-icons {
           position: relative;
@@ -504,26 +504,26 @@
       }
 
       .position-value {
-        font-size: $font-size-md;
+        font-size: vars.$font-size-md;
         font-weight: 600;
-        color: $neon-green;
+        color: vars.$neon-green;
       }
     }
 
     .position-details {
       display: flex;
       flex-direction: column;
-      gap: $spacing-md;
-      margin-bottom: $spacing-md;
+      gap: vars.$spacing-md;
+      margin-bottom: vars.$spacing-md;
 
       .position-tokens {
         display: flex;
-        gap: $spacing-md;
+        gap: vars.$spacing-md;
 
         .token-amount {
           display: flex;
           align-items: center;
-          gap: $spacing-xs;
+          gap: vars.$spacing-xs;
 
           .token-icon {
             width: 16px;
@@ -537,7 +537,7 @@
           }
 
           span {
-            font-size: $font-size-sm;
+            font-size: vars.$font-size-sm;
           }
         }
       }
@@ -551,16 +551,16 @@
           flex-direction: column;
 
           .stat-label {
-            font-size: $font-size-xs;
-            color: $text-secondary;
+            font-size: vars.$font-size-xs;
+            color: vars.$text-secondary;
           }
 
           .stat-value {
-            font-size: $font-size-md;
+            font-size: vars.$font-size-md;
             font-weight: 600;
 
             &.highlight {
-              color: $neon-green;
+              color: vars.$neon-green;
             }
           }
         }
@@ -569,7 +569,7 @@
 
     .position-actions {
       display: flex;
-      gap: $spacing-sm;
+      gap: vars.$spacing-sm;
 
       button {
         flex: 1;
@@ -577,14 +577,15 @@
     }
   }
 }
+
 .connect-wallet-message,
 .no-positions-message {
-  padding: $spacing-xl;
+  padding: vars.$spacing-xl;
   text-align: center;
-  background-color: rgba($secondary-bg, 0.5);
-  border-radius: $border-radius-md;
-  color: $text-secondary;
-  font-size: $font-size-md;
+  background-color: rgba(vars.$secondary-bg, 0.5);
+  border-radius: vars.$border-radius-md;
+  color: vars.$text-secondary;
+  font-size: vars.$font-size-md;
 }
 
 // Modal styles
@@ -603,48 +604,48 @@
 }
 
 .modal-content {
-  background-color: $secondary-bg;
-  border-radius: $border-radius-lg;
+  background-color: vars.$secondary-bg;
+  border-radius: vars.$border-radius-lg;
   width: 90%;
   max-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 0 30px rgba($neon-blue, 0.3);
+  box-shadow: 0 0 30px rgba(vars.$neon-blue, 0.3);
 
   .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $spacing-md;
+    padding: vars.$spacing-md;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
     h3 {
-      font-size: $font-size-lg;
-      color: $text-primary;
+      font-size: vars.$font-size-lg;
+      color: vars.$text-primary;
     }
 
     .close-btn {
       background: none;
       border: none;
-      color: $text-secondary;
-      font-size: $font-size-xl;
+      color: vars.$text-secondary;
+      font-size: vars.$font-size-xl;
       cursor: pointer;
 
       &:hover {
-        color: $text-primary;
+        color: vars.$text-primary;
       }
     }
   }
 
   .modal-body {
-    padding: $spacing-md;
+    padding: vars.$spacing-md;
 
     .pool-info {
       display: flex;
       align-items: center;
-      gap: $spacing-md;
-      margin-bottom: $spacing-lg;
-      padding-bottom: $spacing-md;
+      gap: vars.$spacing-md;
+      margin-bottom: vars.$spacing-lg;
+      padding-bottom: vars.$spacing-md;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
       .token-icons {
@@ -672,33 +673,33 @@
       }
 
       .pair-name {
-        font-size: $font-size-lg;
+        font-size: vars.$font-size-lg;
         font-weight: 600;
       }
 
       .fee-rate {
         margin-left: auto;
-        background-color: rgba($neon-purple, 0.2);
-        padding: $spacing-xs $spacing-sm;
-        border-radius: $border-radius-sm;
-        font-size: $font-size-xs;
-        color: $neon-purple;
+        background-color: rgba(vars.$neon-purple, 0.2);
+        padding: vars.$spacing-xs vars.$spacing-sm;
+        border-radius: vars.$border-radius-sm;
+        font-size: vars.$font-size-xs;
+        color: vars.$neon-purple;
       }
     }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: $spacing-md;
+      gap: vars.$spacing-md;
 
       .input-group {
         display: flex;
         flex-direction: column;
-        gap: $spacing-xs;
+        gap: vars.$spacing-xs;
 
         label {
-          font-size: $font-size-sm;
-          color: $text-secondary;
+          font-size: vars.$font-size-sm;
+          color: vars.$text-secondary;
         }
 
         .input-with-max {
@@ -707,29 +708,29 @@
 
           input {
             flex: 1;
-            @include input-style;
+            @include mix.input-style;
           }
 
           .max-btn {
-            background-color: rgba($neon-blue, 0.2);
+            background-color: rgba(vars.$neon-blue, 0.2);
             border: none;
-            padding: $spacing-xs $spacing-sm;
-            margin-left: $spacing-xs;
-            border-radius: $border-radius-sm;
-            color: $neon-blue;
-            font-size: $font-size-xs;
+            padding: vars.$spacing-xs vars.$spacing-sm;
+            margin-left: vars.$spacing-xs;
+            border-radius: vars.$border-radius-sm;
+            color: vars.$neon-blue;
+            font-size: vars.$font-size-xs;
             font-weight: 600;
             cursor: pointer;
 
             &:hover {
-              background-color: rgba($neon-blue, 0.3);
+              background-color: rgba(vars.$neon-blue, 0.3);
             }
           }
         }
 
         .balance-display {
-          font-size: $font-size-xs;
-          color: $text-secondary;
+          font-size: vars.$font-size-xs;
+          color: vars.$text-secondary;
           text-align: right;
         }
       }
@@ -737,31 +738,31 @@
       .slippage-selector {
         display: flex;
         flex-direction: column;
-        gap: $spacing-sm;
+        gap: vars.$spacing-sm;
 
         label {
-          font-size: $font-size-sm;
-          color: $text-secondary;
+          font-size: vars.$font-size-sm;
+          color: vars.$text-secondary;
         }
 
         .slippage-options {
           display: flex;
-          gap: $spacing-xs;
+          gap: vars.$spacing-xs;
 
           .slippage-btn {
-            padding: $spacing-xs $spacing-sm;
-            background-color: rgba($tertiary-bg, 0.5);
+            padding: vars.$spacing-xs vars.$spacing-sm;
+            background-color: rgba(vars.$tertiary-bg, 0.5);
             border: none;
-            border-radius: $border-radius-sm;
-            color: $text-secondary;
-            font-size: $font-size-xs;
+            border-radius: vars.$border-radius-sm;
+            color: vars.$text-secondary;
+            font-size: vars.$font-size-xs;
             cursor: pointer;
-            transition: all $transition-normal;
+            transition: all vars.$transition-normal;
 
             &:hover,
             &.active {
-              background-color: rgba($neon-blue, 0.2);
-              color: $neon-blue;
+              background-color: rgba(vars.$neon-blue, 0.2);
+              color: vars.$neon-blue;
             }
           }
 
@@ -771,13 +772,13 @@
 
             .slippage-input {
               width: 60px;
-              padding: $spacing-xs;
-              font-size: $font-size-xs;
+              padding: vars.$spacing-xs;
+              font-size: vars.$font-size-xs;
             }
 
             span {
-              margin-left: $spacing-xs;
-              color: $text-secondary;
+              margin-left: vars.$spacing-xs;
+              color: vars.$text-secondary;
             }
           }
         }
@@ -786,24 +787,24 @@
       .liquidity-summary {
         display: flex;
         flex-direction: column;
-        gap: $spacing-xs;
-        padding: $spacing-md;
-        background-color: rgba($tertiary-bg, 0.3);
-        border-radius: $border-radius-md;
-        margin-top: $spacing-md;
+        gap: vars.$spacing-xs;
+        padding: vars.$spacing-md;
+        background-color: rgba(vars.$tertiary-bg, 0.3);
+        border-radius: vars.$border-radius-md;
+        margin-top: vars.$spacing-md;
 
         .summary-item {
           display: flex;
           justify-content: space-between;
-          font-size: $font-size-sm;
+          font-size: vars.$font-size-sm;
 
           span:first-child {
-            color: $text-secondary;
+            color: vars.$text-secondary;
           }
 
           span:last-child {
             font-weight: 600;
-            color: $text-primary;
+            color: vars.$text-primary;
           }
         }
       }

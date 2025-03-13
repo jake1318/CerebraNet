@@ -1,5 +1,5 @@
 @use "sass:color";
-@use "variables" as *;
+@use "variables" as vars;
 @use "mixins" as mix;
 
 // Global Styles
@@ -11,18 +11,22 @@
 
 html,
 body {
-  background-color: $primary-bg;
-  color: $text-primary;
+  background-color: vars.$primary-bg;
+  color: vars.$text-primary;
   font-family: "Inter", "Segoe UI", Roboto, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   min-height: 100vh;
   background-image: radial-gradient(
       circle at 50% 0%,
-      rgba($neon-purple, 0.15),
+      rgba(vars.$neon-purple, 0.15),
       transparent 30%
     ),
-    radial-gradient(circle at 85% 30%, rgba($neon-blue, 0.15), transparent 30%);
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(vars.$neon-blue, 0.15),
+      transparent 30%
+    );
   background-attachment: fixed;
 }
 
@@ -40,34 +44,34 @@ h4,
 h5,
 h6 {
   font-weight: 700;
-  margin-bottom: $spacing-md;
+  margin-bottom: vars.$spacing-md;
 }
 
 h1 {
-  font-size: $font-size-xxl;
-  @include mix.neon-text($neon-blue);
+  font-size: vars.$font-size-xxl;
+  @include mix.neon-text(vars.$neon-blue);
 }
 
 h2 {
-  font-size: $font-size-xl;
+  font-size: vars.$font-size-xl;
 }
 
 h3 {
-  font-size: $font-size-lg;
+  font-size: vars.$font-size-lg;
 }
 
 p {
-  margin-bottom: $spacing-md;
+  margin-bottom: vars.$spacing-md;
 }
 
 a {
-  color: $neon-blue;
+  color: vars.$neon-blue;
   text-decoration: none;
-  transition: color $transition-fast;
+  transition: color vars.$transition-fast;
 
   &:hover {
-    color: color.adjust($neon-blue, $lightness: 10%);
-    text-shadow: 0 0 5px rgba($neon-blue, 0.7);
+    color: color.adjust(vars.$neon-blue, $lightness: 10%);
+    text-shadow: 0 0 5px rgba(vars.$neon-blue, 0.7);
   }
 }
 
@@ -76,40 +80,40 @@ a {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: $spacing-lg;
+  padding: vars.$spacing-lg;
 }
 
 // Button Styles
 .btn {
-  @include mix.neon-button($neon-blue);
+  @include mix.neon-button(vars.$neon-blue);
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   &--primary {
-    @include mix.neon-button($neon-blue);
+    @include mix.neon-button(vars.$neon-blue);
   }
 
   &--secondary {
-    @include mix.neon-button($neon-purple);
+    @include mix.neon-button(vars.$neon-purple);
   }
 
   &--success {
-    @include mix.neon-button($neon-green);
+    @include mix.neon-button(vars.$neon-green);
   }
 
   &--danger {
-    @include mix.neon-button($neon-pink);
+    @include mix.neon-button(vars.$neon-pink);
   }
 
   &--lg {
-    padding: $spacing-md $spacing-xl;
-    font-size: $font-size-md;
+    padding: vars.$spacing-md vars.$spacing-xl;
+    font-size: vars.$font-size-md;
   }
 
   &--sm {
-    padding: $spacing-xs $spacing-md;
-    font-size: $font-size-xs;
+    padding: vars.$spacing-xs vars.$spacing-md;
+    font-size: vars.$font-size-xs;
   }
 
   &--block {
@@ -132,7 +136,7 @@ a {
   }
 
   & + .btn {
-    margin-left: $spacing-md;
+    margin-left: vars.$spacing-md;
   }
 }
 
@@ -170,13 +174,13 @@ a {
 
 @keyframes glow {
   0% {
-    box-shadow: 0 0 5px rgba($neon-blue, 0.3);
+    box-shadow: 0 0 5px rgba(vars.$neon-blue, 0.3);
   }
   50% {
-    box-shadow: 0 0 20px rgba($neon-blue, 0.6);
+    box-shadow: 0 0 20px rgba(vars.$neon-blue, 0.6);
   }
   100% {
-    box-shadow: 0 0 5px rgba($neon-blue, 0.3);
+    box-shadow: 0 0 5px rgba(vars.$neon-blue, 0.3);
   }
 }
 
