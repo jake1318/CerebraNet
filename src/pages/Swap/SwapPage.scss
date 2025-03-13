@@ -1,5 +1,5 @@
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as mix;
 
 .swap-page {
   padding-top: 100px;
@@ -12,12 +12,12 @@
 .swap-container {
   width: 100%;
   max-width: 460px;
-  @include gradient-border($gradient-blue);
+  @include mix.gradient-border($gradient-blue);
   animation: glow 3s infinite alternate;
 }
 
 .swap-title {
-  @include neon-text($neon-blue);
+  @include mix.neon-text($neon-blue);
   text-align: center;
   margin-bottom: $spacing-sm;
 }
@@ -78,7 +78,7 @@
 }
 
 .token-select-btn {
-  @include neon-button($neon-purple);
+  @include mix.neon-button($neon-purple);
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -91,8 +91,12 @@
 }
 
 .token-selector-wrapper {
-  position: relative;
+  position: absolute;
+  top: 100%;
+  right: 0;
   z-index: 100;
+  width: 300px;
+  margin-top: $spacing-sm;
 }
 
 .switch-tokens-btn {

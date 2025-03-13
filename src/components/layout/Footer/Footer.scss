@@ -1,5 +1,5 @@
-@import "../../../styles/variables";
-@import "../../../styles/mixins";
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mix;
 
 .footer {
   background-color: $secondary-bg;
@@ -49,7 +49,7 @@
     span {
       font-size: $font-size-lg;
       font-weight: 700;
-      @include neon-text($neon-blue);
+      @include mix.neon-text($neon-blue);
     }
   }
 

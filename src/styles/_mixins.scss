@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 // Text styling
 @mixin neon-text($color) {
   color: $color;
@@ -134,7 +136,7 @@
   }
 }
 
-// Grid layout - Adding the missing mixin
+// Grid layout
 @mixin grid-layout($columns: 3, $gap: $spacing-md) {
   display: grid;
   grid-template-columns: repeat($columns, 1fr);

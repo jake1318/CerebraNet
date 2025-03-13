@@ -1,6 +1,6 @@
-@use "variables" as *;
-@use "mixins" as *;
 @use "sass:color";
+@use "variables" as *;
+@use "mixins" as mix;
 
 // Global Styles
 * {
@@ -45,7 +45,7 @@ h6 {
 
 h1 {
   font-size: $font-size-xxl;
-  @include neon-text($neon-blue);
+  @include mix.neon-text($neon-blue);
 }
 
 h2 {
@@ -81,25 +81,25 @@ a {
 
 // Button Styles
 .btn {
-  @include neon-button($neon-blue);
+  @include mix.neon-button($neon-blue);
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   &--primary {
-    @include neon-button($neon-blue);
+    @include mix.neon-button($neon-blue);
   }
 
   &--secondary {
-    @include neon-button($neon-purple);
+    @include mix.neon-button($neon-purple);
   }
 
   &--success {
-    @include neon-button($neon-green);
+    @include mix.neon-button($neon-green);
   }
 
   &--danger {
-    @include neon-button($neon-pink);
+    @include mix.neon-button($neon-pink);
   }
 
   &--lg {
@@ -138,21 +138,21 @@ a {
 
 // Card
 .card {
-  @include card;
+  @include mix.card;
 }
 
 // Input
 .input {
-  @include input-style;
+  @include mix.input-style;
 }
 
 // Layout
 .grid {
-  @include grid-layout;
+  @include mix.grid-layout;
 }
 
 .flex-center {
-  @include flex-center;
+  @include mix.flex-center;
 }
 
 // Animation

@@ -1,12 +1,12 @@
-@import "../../../styles/variables";
-@import "../../../styles/mixins";
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mix;
 
 .token-selector {
   position: relative;
   width: 100%;
 
   .token-selector-button {
-    @include input-style;
+    @include mix.input-style;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -57,7 +57,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
       .search-input {
-        @include input-style;
+        @include mix.input-style;
         background-color: rgba($tertiary-bg, 0.3);
       }
     }
